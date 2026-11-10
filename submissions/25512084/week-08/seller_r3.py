@@ -146,11 +146,9 @@ def pricing(u):
         round(list_price * anchor)
     )
 
-    # Start near list price but do not waste many rounds defending it.
-    initial_ask = max(
-        target_price,
-        round(list_price * min(1.0, anchor + 0.05))
-    )
+    # Lead with the target price so buyers are more likely to engage.
+    initial_ask = target_price
+        
 
     return {
         "cost": round(cost),
