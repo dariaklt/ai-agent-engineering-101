@@ -171,6 +171,14 @@ miniapp.offer('show_card', 'show the person a card in the chat; args {title, bod
   cards.push({who: 'card', title: a.title || '', text: a.body || '', ts: Date.now() / 1000}); draw(); return 'shown';
 });
 
+// Owner preferences: supplementary guidance, not required for autonomous trading.
+miniapp.offer('owner_policy', 'return the owner trading preferences; no arguments', () => ({
+  priority: 'maximize final credits',
+  risk: 'conservative',
+  preserve_liquidity: true,
+  avoid_loss_making_trades: true
+}));
+
 function draw() {
   const items = view.chat.concat(cards).sort((a, b) => a.ts - b.ts);
   const mine = view.chat.filter(m => m.who === me).length;
